@@ -1,0 +1,24 @@
+{
+  "name": "forkify",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cssnano": "^4.1.11",
+    "parcel-bundler": "latest",
+    "postcss": "^8.4.31",
+    "sass": "^1.26.10"
+  },
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "fracty": "^1.0.11",
+    "img": "^3.0.3",
+    "regenerator-runtime": "^0.13.7"
+  }
+}
