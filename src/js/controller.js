@@ -15,9 +15,6 @@ import bookmarksView from "./views/bookmarksView.js";
 
 ///////////////////////////////////////
 //API 7fa69d8c-2cf2-47d8-bdc4-25f54211b3b2
-if (module.hot) {
-  module.hot.accept();
-}
 
 const controlRecipes = async function () {
   try {
