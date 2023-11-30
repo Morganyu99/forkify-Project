@@ -10,7 +10,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "cssnano": "^4.1.11",
     "parcel-bundler": "latest",
     "postcss": "^8.4.31",
     "sass": "^1.26.10"
