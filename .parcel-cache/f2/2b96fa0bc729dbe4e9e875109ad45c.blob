@@ -1,0 +1,67 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.AJAX = exports.timeout = void 0;
+
+var _regeneratorRuntime = require("regenerator-runtime");
+
+var _config = require("./config");
+
+const timeout = function (s) {
+  return new Promise(function (_, reject) {
+    setTimeout(function () {
+      reject(new Error(`Request took too long! Timeout after ${s} second`));
+    }, s * 1000);
+  });
+}; // export const getJSON = async function (url) {
+//   try {
+//     const res = await Promise.race([fetch(url), timeout(TIMEOUT_SEC)]);
+//     if (!res.ok) throw new Error(res.message);
+//     const data = await res.json();
+//     return data;
+//   } catch (err) {
+//     throw err;
+//   }
+// };
+
+
+exports.timeout = timeout;
+
+const AJAX = async function (url, uploadData = undefined) {
+  try {
+    const fetchPro = uploadData ? fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(uploadData)
+    }) : fetch(url);
+    const res = await Promise.race([fetchPro, timeout(_config.TIMEOUT_SEC)]);
+    if (!res.ok) throw new Error(res.message);
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    throw err;
+  }
+}; // export const sendJSON = async function (url, uploadData) {
+//   try {
+//     const fetchPro = fetch(url, {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify(uploadData),
+//     });
+//     const res = await Promise.race([fetchPro, timeout(TIMEOUT_SEC)]);
+//     if (!res.ok) throw new Error(res.message);
+//     const data = await res.json();
+//     return data;
+//   } catch (err) {
+//     throw err;
+//   }
+// };
+
+
+exports.AJAX = AJAX;

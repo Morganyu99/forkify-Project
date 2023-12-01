@@ -3,14 +3,13 @@ import RecipeView from "./views/recipeView.js";
 import ResultsView from "./views/resultsView.js";
 import SearchView from "./views/searchView.js";
 import PaginationView from "./views/paginationView.js";
-import "core-js/stable";
-import "regenerator-runtime/runtime";
-import paginationView from "./views/paginationView.js";
 import BookmarksView from "./views/bookmarksView.js";
 import addRecipeView from "./views/addRecipeView.js";
-import recipeView from "./views/recipeView.js";
 import { MODAL_CLOSE_SEC } from "./config.js";
-import bookmarksView from "./views/bookmarksView.js";
+
+import "core-js/stable";
+import "regenerator-runtime/runtime";
+import { async } from "regenerator-runtime";
 // https://forkify-api.herokuap p.com/v2
 
 ///////////////////////////////////////
@@ -57,7 +56,7 @@ const controlAddBookmark = function () {
 };
 
 const controlPagination = function (result = true) {
-  result ? paginationView.changeButton(+1) : paginationView.changeButton(-1);
+  result ? PaginationView.changeButton(+1) : PaginationView.changeButton(-1);
   ResultsView.render(model.getSearchResultsPage(model.state.search.page));
   PaginationView.render(model.state.search);
 };
@@ -74,7 +73,7 @@ const controlAddRecipe = async function (newRecipe) {
 
     await model.uploadRecipe(newRecipe);
 
-    await recipeView.render(model.state.recipe);
+    RecipeView.render(model.state.recipe);
 
     //Success Message
     addRecipeView.renderMessage();
@@ -83,7 +82,7 @@ const controlAddRecipe = async function (newRecipe) {
     window.history.pushState(null, "", `#${model.state.recipe.id}`);
 
     //Update
-    recipeView.render(model.state.recipe);
+    RecipeView.render(model.state.recipe);
 
     //Close form window
     setTimeout(function () {
@@ -96,8 +95,8 @@ const controlAddRecipe = async function (newRecipe) {
       addRecipeView.replaceViewForm;
     }, (MODAL_CLOSE_SEC + 1) * 1000);
     //render bookmark view
-    bookmarksView.render(model.state.bookmark);
-    bookmarksView.update(model.state.bookmark);
+    BookmarksView.render(model.state.bookmark);
+    BookmarksView.update(model.state.bookmark);
   } catch (err) {
     addRecipeView.renderError(err.message);
     console.log(err);

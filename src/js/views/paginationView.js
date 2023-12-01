@@ -1,5 +1,5 @@
 import View from "./View";
-import icons from "../../img/icons.svg";
+import icons from "url:../../img/icons.svg";
 import { NEXT_PAGE, PREV_PAGE } from "../config";
 
 class PaginationView extends View {
