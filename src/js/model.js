@@ -97,7 +97,9 @@ const persistBookmarks = function () {
 };
 
 export const getBookmarks = function () {
-  state.bookmark = JSON.parse(localStorage.getItem("bookmarks"));
+  const storage = localStorage.getItem("bookmarks");
+
+  if (storage) state.bookmark = JSON.parse(storage);
 };
 
 const clearBookmarks = function () {
