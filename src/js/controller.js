@@ -20,10 +20,10 @@ const controlRecipes = async function () {
     const id = window.location.hash.slice(1);
     if (!id) return;
     RecipeView.renderSpinner();
-    ResultsView.update(model.getSearchResultsPage(model.state.search.page));
+    ResultsView.update(model.getSearchResultsPage());
     await model.loadRecipe(id);
-    const recipe = model.state.recipe;
-    RecipeView.render(recipe);
+
+    RecipeView.render(model.state.recipe);
     BookmarksView.update(model.state.bookmark);
     RecipeView.addHandlerUpdateServings(controlServings);
   } catch (err) {
