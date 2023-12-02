@@ -12,19 +12,28 @@
 .pagination {
   margin-top: auto;
   padding: 0 3.5rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 
   &::after {
     content: "";
     display: table;
     clear: both;
   }
-
+  &__details {
+    text-align: center;
+    grid-column: 2;
+    color: $color-primary;
+    font-size: 1.3rem;
+    font-weight: 600;
+    align-self: center;
+  }
   &__btn {
     &--prev {
-      float: left;
+      grid-column: 1;
     }
     &--next {
-      float: right;
+      grid-column: 3;
     }
   }
 }

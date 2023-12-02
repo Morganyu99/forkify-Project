@@ -39,13 +39,15 @@ class PaginationView extends View {
     const numPages = Math.ceil(
       this._data.results.length / this._data.resultsPerPage
     );
+
+    const pageDetails = `<span class= "pagination__details">${this._data.page} of ${numPages}</span>`;
     //Page 1 and there are other pages
     if (this._data.page === 1 && numPages > 1) {
-      return this._buttonRender(this._data.page, NEXT_PAGE);
+      return pageDetails + this._buttonRender(this._data.page, NEXT_PAGE);
     }
     //Last Page
     if (this._data.page === numPages && numPages > 1) {
-      return this._buttonRender(this._data.page, PREV_PAGE);
+      return this._buttonRender(this._data.page, PREV_PAGE) + pageDetails;
     }
 
     if (this._data.page > 1 && this._data.page < numPages) {
@@ -53,12 +55,13 @@ class PaginationView extends View {
 
       return (
         this._buttonRender(this._data.page, PREV_PAGE) +
+        pageDetails +
         this._buttonRender(this._data.page, NEXT_PAGE)
       );
     }
 
     //Page 1 and there are no pages
-    return ``;
+    return pageDetails;
   }
 }
 
